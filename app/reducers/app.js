@@ -12,6 +12,7 @@ import {
 /* ------------------- */
 const defaultState = {
 	appData: undefined,
+	loading: false,
 };
 
 /* ----------------------------------------- */
@@ -22,14 +23,17 @@ export default function reducer(state = defaultState, action) {
 	case GET_DATA_LOAD:
 		return {
 			appData: undefined,
+			loading: true,
 		};
 	case GET_DATA_SUCCESS:
 		return {
 			appData: action.result,
+			loading: false,
 		};
 	case GET_DATA_FAIL:
 		return {
 			appData: 'Error!',
+			loading: false,
 		};
 	default:
 		return state;

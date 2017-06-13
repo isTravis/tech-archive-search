@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import qs from 'qs';
+import dateFormat from 'dateformat';
 import { getData } from 'actions/app';
 import SearchBar from 'components/SearchBar/SearchBar';
 
@@ -42,13 +43,14 @@ class Search extends Component {
 			return {
 				id: properties.pubId,
 				title: properties.title,
-				url: 'https://www.facething.whatever.com',
-				description: 'The most important aspects of non-linear coagulation within rodents of sizes 10-15 is that the posterior lateral dorsal bone is in tact when realizing that of all the things I thought about yesterday, most of them were the type that kept me from eating ice cream - a dairy blend with sugar.',
-				publicationDate: 'June 5, 2017',
-				uploadDate: 'June 7, 2017',
+				url: properties.url,
+				description: properties.description || 'No Description',
+				publicationDate: properties.publicationDate,
+				uploadDate: properties.uploadDate,
+				origin: properties.origin,
 			};
 		});
-		
+
 		return (
 			<div className={'search-page'}>
 				<Helmet>
@@ -62,19 +64,36 @@ class Search extends Component {
 						</div>
 					</div>
 				</div>
+				{this.props.appData.loading &&
+					<div id="app-loading">
+						<div className="spinner">
+							<div className="bounce1" />
+							<div className="bounce2" />
+							<div className="bounce3" />
+						</div>
+					</div>
+				}
 				<div className={'container'}>
 					<div className={'row'}>
 						<div className={'col-12'}>
+							{appData === 'Error!' &&
+								<h3>Error Loading Results</h3>
+							}
+
+							{!this.props.appData.loading && appData !== 'Error!' && items.length === 0 &&
+								<h3>No Results</h3>
+							}
 							{items.map((item)=> {
 								return (
-									<div className={'result-container'} id={`result-${item.id}`}>
+									<div className={'result-container'} key={`result-${item.id}`}>
 										<a href={item.url}>
 											<div className={'result-title'}>{item.title}</div>
 										</a>
 										<div className={'result-url'}>{item.url}</div>
 										<div className={'result-description'}>{item.description}</div>
-										<div className={'result-meta'}>Publication Date: {item.publicationDate}</div>
-										<div className={'result-meta'}>Upload Date: {item.uploadDate}</div>
+										<div className={'result-meta'}>Publication Date: {dateFormat(new Date(Number(item.publicationDate)), 'mmmm dS, yyyy, h:MM:ss TT')}</div>
+										<div className={'result-meta'}>Upload Date: {dateFormat(new Date(Number(item.uploadDate)), 'mmmm dS, yyyy, h:MM:ss TT')}</div>
+										<div className={'result-meta'}>Origin: {item.origin}</div>
 									</div>
 								);
 							})}
