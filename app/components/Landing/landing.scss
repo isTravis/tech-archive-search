@@ -1,0 +1,36 @@
+#landing-page {
+	.landing-top {
+		background-color: $navBackground;
+		background-image: $gradient;
+		padding: 4em 0em;
+		color: white;
+		text-align: center;
+		h1 {
+			font-family: Georgia, serif;
+			font-weight: normal;
+			font-size: 4em;
+		}
+		input {
+			width: 550px;
+			max-width: calc(100% - 2em);
+			font-size: 1.25em;
+			height: 2em;
+			padding: 0em 1em;
+			margin: 1em 0em;
+		}
+		.logos-container {
+			text-align: left;
+			img {
+				height: 50px;
+				padding-right: 2em;
+				vertical-align: top;
+			}
+			button {
+				height: 50px;
+				padding: 0em 1em;
+				vertical-align: top;
+			}
+		}
+	}
+	
+}

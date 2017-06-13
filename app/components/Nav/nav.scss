@@ -1,0 +1,23 @@
+.navbar-page {
+	height: 50px;
+
+	.navbar {
+		background-color: $navBackground;
+		background-image: $gradient;
+		color: $navColor;
+		height: 50px;
+		line-height: 50px;	
+		padding: 0em 1em;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+		position: fixed;
+		width: 100%;
+		top: 0;
+		z-index: 1000000;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+		padding: 0em 1em;
+	}
+}
+
