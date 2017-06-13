@@ -10,6 +10,7 @@ require('./app.scss');
 const Landing = () => <Async load={import('components/Landing/Landing')} />;
 const NoMatch = () => <Async load={import('components/NoMatch/NoMatch')} />;
 const Search = () => <Async load={import('components/Search/Search')} />;
+const Join = () => <Async load={import('components/Join/Join')} />;
 
 const propTypes = {
 	location: PropTypes.object.isRequired,
@@ -31,6 +32,7 @@ const App = function({ location }) {
 			<Switch>
 				<Route exact path="/" component={Landing} />
 				<Route path="/search" component={Search} />
+				<Route path="/join" component={Join} />
 				<Route path="/*" component={NoMatch} />
 			</Switch>
 		</div>
