@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 export const apiFetch = function(path, opts) {
-	const urlPrefix = document.origin.indexOf('localhost') > -1
+	const urlPrefix = location.origin.indexOf('localhost') > -1
 		? 'http://localhost:9876'
 		: 'https://underlay-api-v0.herokuapp.com';
 	const finalRoute = `${urlPrefix}/${path}`;
