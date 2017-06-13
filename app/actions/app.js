@@ -17,10 +17,10 @@ export const GET_DATA_FAIL = 'app/GET_DATA_FAIL';
 // action objects (e.g. {type:example, payload:data} ) within dispatch()
 // function calls
 /*--------*/
-export function getData(user) {
+export function getData(searchTerm) {
 	return (dispatch) => {
 		dispatch({ type: GET_DATA_LOAD });
-		return apiFetch(user)
+		return apiFetch(`search?q=${searchTerm}`)
 		.then((result) => {
 			dispatch({ type: GET_DATA_SUCCESS, result });
 		})

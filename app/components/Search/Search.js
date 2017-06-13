@@ -16,16 +16,18 @@ const propTypes = {
 
 class Search extends Component {
 	componentWillMount() {
-		const location = this.props.location;
-		const mode = 'pub';
-		this.props.dispatch(getData(`${mode}?title=${location.search}`));
+		const search = this.props.location.search || '?';
+		const queryObject = qs.parse(search.slice(1, search.length));
+
+		this.props.dispatch(getData(queryObject.q));
 	}
 
 	componentWillReceiveProps(nextProps) {
 		if (this.props.location.search !== nextProps.location.search) {
-			const location = nextProps.location;
-			const mode = 'pub';
-			this.props.dispatch(getData(`${mode}?title=${location.search}`));
+			const search = nextProps.location.search || '?';
+			const queryObject = qs.parse(search.slice(1, search.length));
+
+			this.props.dispatch(getData(queryObject.q));
 		}
 	}
 
@@ -33,42 +35,20 @@ class Search extends Component {
 	render() {
 		const search = this.props.location.search || '?';
 		const queryObject = qs.parse(search.slice(1, search.length));
-
-		const items = [
-			{
-				id: '01',
-				title: 'The beginning of things',
+		const appData = this.props.appData.appData || {};
+		const records = appData.records || [];
+		const items = records.map((record)=> {
+			const properties = record._fields[0].properties;
+			return {
+				id: properties.pubId,
+				title: properties.title,
 				url: 'https://www.facething.whatever.com',
 				description: 'The most important aspects of non-linear coagulation within rodents of sizes 10-15 is that the posterior lateral dorsal bone is in tact when realizing that of all the things I thought about yesterday, most of them were the type that kept me from eating ice cream - a dairy blend with sugar.',
 				publicationDate: 'June 5, 2017',
 				uploadDate: 'June 7, 2017',
-			},
-			{
-				id: '02',
-				title: 'The beginning of things',
-				url: 'https://www.facething.whatever.com',
-				description: 'The most important aspects of non-linear coagulation within rodents of sizes 10-15 is that the posterior lateral dorsal bone is in tact when realizing that of all the things I thought about yesterday, most of them were the type that kept me from eating ice cream - a dairy blend with sugar.',
-				publicationDate: 'June 5, 2017',
-				uploadDate: 'June 7, 2017',
-			},
-			{
-				id: '03',
-				title: 'The beginning of things',
-				url: 'https://www.facething.whatever.com',
-				description: 'The most important aspects of non-linear coagulation within rodents of sizes 10-15 is that the posterior lateral dorsal bone is in tact when realizing that of all the things I thought about yesterday, most of them were the type that kept me from eating ice cream - a dairy blend with sugar.',
-				publicationDate: 'June 5, 2017',
-				uploadDate: 'June 7, 2017',
-			},
-			{
-				id: '04',
-				title: 'The beginning of things',
-				url: 'https://www.facething.whatever.com',
-				description: 'The most important aspects of non-linear coagulation within rodents of sizes 10-15 is that the posterior lateral dorsal bone is in tact when realizing that of all the things I thought about yesterday, most of them were the type that kept me from eating ice cream - a dairy blend with sugar.',
-				publicationDate: 'June 5, 2017',
-				uploadDate: 'June 7, 2017',
-			},
-
-		];
+			};
+		});
+		
 		return (
 			<div className={'search-page'}>
 				<Helmet>

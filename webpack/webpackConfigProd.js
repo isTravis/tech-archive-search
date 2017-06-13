@@ -87,7 +87,7 @@ module.exports = {
 			stripPrefix: 'static/',
 			mergeStaticsConfig: true, // Merge webpacks static outputs with the globs described above.
 			runtimeCaching: [{
-				urlPattern: /^https:\/\/api\.github\.com\//,
+				urlPattern: /^https:\/\/underlay-api-v0\.herokuapp\.com\//,
 				handler: 'fastest',
 				networkTimeoutSeconds: 5000,
 				options: {

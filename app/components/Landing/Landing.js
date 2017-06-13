@@ -19,7 +19,7 @@ const Landing = function() {
 								<img src={'images/banana.png'} alt={'Banana Logo'} />
 								<img src={'images/dunder.jpg'} alt={'Dunder Logo'} />
 								<Link to={'/join'}>
-									<button>Join</button>
+									<div className={'button'}>Join</div>
 								</Link>
 							</div>
 						</div>

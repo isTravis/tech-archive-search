@@ -1,8 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 
 export const apiFetch = function(path, opts) {
-	const urlPrefix = 'https://api.github.com/users';
-	const finalRoute = `${urlPrefix}/${path}/orgs`;
+	const urlPrefix = 'https://underlay-api-v0.herokuapp.com';
+	// const urlPrefix = 'http://localhost:9876';
+	const finalRoute = `${urlPrefix}/${path}`;
 
 	return fetch(finalRoute, {
 		...opts,

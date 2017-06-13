@@ -25,10 +25,14 @@
 				padding-right: 2em;
 				vertical-align: top;
 			}
-			button {
+			.button {
 				height: 50px;
 				padding: 0em 1em;
 				vertical-align: top;
+				display: inline-block;
+				text-decoration: none;
+				border: 1px solid #888;
+				line-height: 50px;
 			}
 		}
 	}
