@@ -21,6 +21,12 @@ class SearchBar extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.initialInput !== nextProps.initialInput) {
+			this.setState({ input: nextProps.initialInput });
+		}
+	}
+
 	handleChange(evt) {
 		this.setState({ input: evt.target.value });
 	}

@@ -1,0 +1,18 @@
+.footer-page {
+	border-top: 1px solid #777;
+	padding: 1em 0em;
+	margin-top: 2em;
+
+	.footer {
+		text-align: center;
+	}
+	a {
+		text-decoration: none;
+		color: inherit;
+		padding: 0em 1em;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+

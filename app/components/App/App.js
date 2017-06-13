@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Async from 'react-code-splitting';
 import Nav from 'components/Nav/Nav';
+import Footer from 'components/Footer/Footer';
 
 require('./app.scss');
 
@@ -35,6 +36,8 @@ const App = function({ location }) {
 				<Route path="/join" component={Join} />
 				<Route path="/*" component={NoMatch} />
 			</Switch>
+
+			<Footer />
 		</div>
 	);
 };

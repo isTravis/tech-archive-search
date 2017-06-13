@@ -85,7 +85,7 @@ class Search extends Component {
 							}
 							{items.map((item)=> {
 								return (
-									<div className={'result-container'} key={`result-${item.id}`}>
+									<div className={'result-container'} key={`result-${item.id || item.title}`}>
 										<a href={item.url}>
 											<div className={'result-title'}>{item.title}</div>
 										</a>
